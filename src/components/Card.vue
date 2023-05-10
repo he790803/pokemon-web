@@ -90,6 +90,10 @@ const cardInfo = (item) => {
 }
 
 @media screen and (max-width: 900px) {
+  .cardGroup {
+    position: relative;
+    top: 350px;
+  }
   .card {
     width: 40%;
   }

@@ -119,4 +119,19 @@ button:active {
   align-items: center;
   height: calc(100vh - 100px);
 }
+@media screen and (max-width: 900px) {
+  header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    height: 350px;
+  }
+  .buttonGroup {
+    position: relative;
+    bottom: -350px;
+
+    z-index: 10;
+  }
+}
 </style>
