@@ -118,6 +118,9 @@ button:active {
   justify-content: center;
   align-items: center;
   height: calc(100vh - 100px);
+  position: relative;
+  top: 0;
+  z-index: 10;
 }
 @media screen and (max-width: 900px) {
   header {
@@ -125,12 +128,11 @@ button:active {
     top: 0;
     width: 100%;
     z-index: 10;
-    height: 350px;
+    height: 100px;
   }
   .buttonGroup {
     position: relative;
     bottom: -350px;
-
     z-index: 10;
   }
 }

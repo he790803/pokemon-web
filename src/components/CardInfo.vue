@@ -28,7 +28,7 @@ const props = defineProps({
   justify-content: center;
   align-items: center;
   height: 250px;
-  background-color: blanchedalmond;
+  background-color: lemonchiffon;
   width: 100%;
 }
 .message {
