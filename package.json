@@ -1,8 +1,8 @@
 {
-  "name": "pokemonweb",
+  "name": "pokemon-web",
   "version": "0.0.0",
   "private": true,
-  "homepage": "https://he798003.github.io/pokemonWeb",
+  "homepage": "https://he798003.github.io/pokemon-web",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
