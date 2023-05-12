@@ -32,24 +32,32 @@ const prevHandler = () => {
 };
 
 const getPokemon = async (res) => {
-  for (const item of res) {
-    // 使用 for...of 迴圈來處理陣列中的每一個元素
+  const promises = res.map(async (item) => {
     const result = await axios.get(item.url);
-    pokeData.push(result.data); // 直接將結果 push 到 reactive 變數中即可，不需要使用函式來設定 state
-  }
-  pokeData.sort((a, b) => (a.id > b.id ? 1 : -1)); // 在結束迴圈之後，對 pokeData 進行排序
-  loading.value = false; // 設定 loading 為 false，隱藏載入中的畫面
+    return result.data;
+  });
+  const values = await Promise.all(promises); //Promise.all等待所有promises完成
+  pokeData.push(...values);
+  pokeData.sort((a, b) => (a.id > b.id ? 1 : -1));
+  loading.value = false;
+
+  // for (const item of res) {
+  //   // 使用 for...of 迴圈來處理陣列中的每一個元素
+  //   const result = await axios.get(item.url);
+  //   pokeData.push(result.data); // 直接將結果 push 到 reactive 變數中即可
+  // }
+  // pokeData.sort((a, b) => (a.id > b.id ? 1 : -1)); // 在結束迴圈之後，對 pokeData 進行排序
+  // loading.value = false; // 設定 loading 為 false，隱藏載入中的畫面
 };
 
 const getPokemonData = async () => {
   loading.value = true;
   try {
-    // const url = 'https://pokeapi.co/api/v2/pokemon/1';
     const response = await axios.get(url.value);
-    response.data.results;
-    nextUrl.value = response.data.next;
-    prevUrl.value = response.data.previous;
-    getPokemon(response.data.results);
+    const res = response.data;
+    nextUrl.value = res.next;
+    prevUrl.value = res.previous;
+    getPokemon(res.results);
   } catch {
     console.log('Error:', error.message);
   }
